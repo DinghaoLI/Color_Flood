@@ -62,5 +62,9 @@ void createFichier(int** grille,int taille,char* nom);
 int** inputFichier(int** grille,int taille,char* nom);
 
 
+int testCouleur(int** grille, int taille);
+
+void afficher(int** grille,int taille);
+
 
 #endif

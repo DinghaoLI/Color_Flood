@@ -143,16 +143,23 @@ void rempalcer (int** grille, int taille, int x, int y, int color){
 \param color La couleur que l'on veut donner à la case
 \return Cette fonction ne retourne rien
 **/
-
 void changer(int** grille,int colorOrigin, int taille, int x, int y,int color){
     if(colorOrigin!=color){
         if((x>=0)&&(x<taille)&&(y>=0)&&(y<taille)){
             if(grille[x][y]==colorOrigin){
                 grille[x][y]=color;
-                changer(grille,colorOrigin,taille,x+1,y,color);
-                changer(grille,colorOrigin,taille,x,y+1,color);
-                changer(grille,colorOrigin,taille,x-1,y,color);
-                changer(grille,colorOrigin,taille,x,y-1,color);
+                if((x==0)&&(y==0)){
+                    changer(grille,colorOrigin,taille,x+1,y,color);
+                    changer(grille,colorOrigin,taille,x,y+1,color);
+                }else if((x==taille-1)&&(y==taille-1)){
+                    changer(grille,colorOrigin,taille,x-1,y,color);
+                    changer(grille,colorOrigin,taille,x,y-1,color);
+                }else{
+                    changer(grille,colorOrigin,taille,x+1,y,color);
+                    changer(grille,colorOrigin,taille,x,y+1,color);
+                    changer(grille,colorOrigin,taille,x-1,y,color);
+                    changer(grille,colorOrigin,taille,x,y-1,color);
+                }
             }
         }
     }
@@ -174,6 +181,15 @@ void initChanger(int** grille, int taille, int color){
     changer(grille,colorOrigin,taille,0,1,color);
     changer(grille,colorOrigin,taille,1,0,color);
 }
+
+
+
+
+
+
+
+
+
 /**
 \fn void initChanger(int** grille, int taille, int color)
 \brief Fonction qui change la couleur des cases de coordonnées (1,0) et (0,1)
@@ -188,7 +204,7 @@ int testCouleur(int** grille, int taille){
   int color = grille[0][0];
   for (i=0;i<taille;i++){
     for (j=0;j<taille;j++){
-      if (grille[i][j]!= color)
+      if (grille[i][j] != color)
         return 0;
     }
   }
@@ -202,4 +218,15 @@ int testCouleur(int** grille, int taille){
 \return 1 si toutes les cases ont la même valeur et 0 sinon
 **/
 
+
+void afficher(int** grille,int taille){
+    int i,j;
+    for(i=0;i<taille;i++){
+        printf("\n");
+        for(j=0;j<taille;j++){
+            printf(" %d ",grille[i][j]);
+        }
+    }
+    printf("\n");
+}
 
