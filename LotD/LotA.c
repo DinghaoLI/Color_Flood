@@ -92,29 +92,29 @@ void createFichier(int** grille,int taille, char* nom){
 \param nom Le nom que l'on donne au nouveau fichier
 \return Cette fonction ne retourne rien
 **/
-
-int** inputFichier(int** grille,int taille, char* nom){
+int** inputFichier(int** grille,int taille){
   int i,j,r;
-  char buf;
+  char* nom = (char*) malloc(100*sizeof(char));
+  char* buf=(char*) malloc(sizeof(char));
+  printf("Quel fichier souhaitez-vous ouvrir ?\n");
+  scanf("%s",nom);
   int fdin=open(nom,O_RDONLY);
   if(fdin==-1){
     printf(" probleme de lecture !\n");
-    close(fdin);
     exit(1);
   }
   for(i=0;i<taille;i++){
     for(j=0;j<taille;j++){
-      r=read(fdin,&buf,1);
+      r=read(fdin,buf,1);
       if(r!=1){
     printf(" probleme d'initialisation par cet fichier\n");
-    close(fdin);
     exit(1);
       }
-      grille[i][j]=(int)buf-48;
-     // printf("%d\n",(int)buf);
+      grille[i][j]=atoi(buf);
     }
   }
-  close(fdin);
+  free(nom);
+  free(buf);
   return grille;
 }
 /**

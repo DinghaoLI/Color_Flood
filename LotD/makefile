@@ -3,5 +3,5 @@
 all : sdl
 
 	
-sdl : LotA.c  LotA.h  LotD.c
-		gcc LotA.c  LotD.c -o  sdl   -lSDL
+sdl : LotA.c  LotA.h  SDL.c
+		gcc LotA.c  SDL.c -o  sdl   -lSDL

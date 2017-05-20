@@ -59,8 +59,7 @@ void createFichier(int** grille,int taille,char* nom);
     @param: la pointeur de grille,la taille de grille
     @retuen: un fichier qui contient la grille
 */
-int** inputFichier(int** grille,int taille,char* nom);
-
+int** inputFichier(int** grille,int taille);
 
 int testCouleur(int** grille, int taille);
 
